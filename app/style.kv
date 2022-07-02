@@ -1,0 +1,158 @@
+JanelaGerenciadora:
+    JanelaPrincipal:
+    Janela1:
+    Janela2:
+
+
+
+
+<JanelaPrincipal>:
+    name: "janelaprincipal"
+    FloatLayout:
+
+        MDToolbar:
+            id: menu_
+            pos_hint: {"top": 1}
+            title: '[i]Conversor[/i]'
+            # left_action_items: [['menu', lambda x: x]]
+            right_action_items: [['brightness-6', lambda x: app.mudar_cor()]]
+
+
+        Image:
+            source: "app/icone_logo.png"
+            allow_stretch: True
+            pos_hint: {"center_x": .5, "center_y": .65}
+            size_hint: 1, .3
+
+
+        MDRaisedButton:
+            text: "[size=34][i]Converter KM/H para M/S[/size][/i]"
+            pos_hint: {"center_x": .5, "center_y": .4}
+            size_hint: .8, .08
+            on_release: 
+                app.root.current = "janela1"
+                root.manager.transition.direction = "left"
+                
+                
+
+        MDRaisedButton:
+            text: "[size=34][i]Converter M/S para KM/H[/size][/i]"
+            pos_hint: {"center_x": .5, "center_y": .3}
+            size_hint: .8, .08
+            on_release:
+                app.root.current = "janela2"
+                root.manager.transition.direction = "left"
+
+        
+        MDTextButton:
+            text: "Kalebe Chimanski de Almeida"
+            custom_color: 0, 1, 0, 1
+            pos_hint: {"center_x": .5, "center_y": .1}
+            underline: True
+            on_release:
+                app.abrir_link()
+
+
+                
+                
+
+
+<Janela1>:
+    name: "janela1"
+    FloatLayout:
+        MDFloatingActionButton:
+            icon: "keyboard-return"
+            elevation_normal: 12
+            pos_hint: {"center_x": .15, "center_y": .94}
+            on_release:
+                app.voltar()
+                root.limpar()
+            
+
+        MDFloatingActionButton:
+            icon: "brightness-6"
+            elevation_normal: 12
+            pos_hint: {"center_x": .85, "center_y": .94}
+            on_release:
+                app.mudar_cor()
+            
+            
+
+        MDLabel:
+            id: resposta
+            text: ""
+            font_size: 180
+            halign: "center"    
+            pos_hint: {"center_x": .5, "center_y": .65}
+
+
+        MDTextField:
+            id: caixa_texto
+            hint_text: 'Digite a velocidade em KM/H:'
+            pos_hint: {"center_x": .5, "center_y": .4}
+            size_hint: .7, .12
+            mode: "rectangle"
+            multiline: False
+            halign: "center"
+
+
+        MDFillRoundFlatButton:
+            text: "[size=50]Converter[/size]"
+            pos_hint: {"center_x": .5, "center_y": .25}
+            size_hint: .5, .08
+            on_release: 
+                root.calcular() # no caso a root é a janela 1
+        
+
+            
+<Janela2>:
+    name: "janela2"
+    FloatLayout:
+        
+
+        MDFloatingActionButton:
+            icon: "keyboard-return"
+            elevation_normal: 12
+            pos_hint: {"center_x": .15, "center_y": .94}
+            on_release:
+                app.voltar()
+                root.limpar()
+
+
+        MDFloatingActionButton:
+            icon: "brightness-6"
+            elevation_normal: 12
+            pos_hint: {"center_x": .85, "center_y": .94}
+            on_release:
+                app.mudar_cor()
+
+ 
+        MDLabel:
+            id: resposta
+            text: ""
+            font_size: 180
+            halign: "center"    
+            pos_hint: {"center_x": .5, "center_y": .65}
+
+
+        MDTextField:
+            id: caixa_texto
+            hint_text: 'Digite a velocidade em M/S:'
+            pos_hint: {"center_x": .5, "center_y": .4}
+            size_hint: .7, .12
+            mode: "rectangle"
+            multiline: False
+            halign: "center"
+
+
+        MDFillRoundFlatButton:
+            text: "[size=50]Converter[/size]"
+            pos_hint: {"center_x": .5, "center_y": .25}
+            size_hint: .5, .08
+            on_release: root.calcular() 
+
+
+
+
+    
+    
